@@ -4,7 +4,7 @@ const multer = require("multer");
 const listing_controller = require("../controllers/propertylisting");
 
 const upload = multer({
-  dest: "../uploads",
+  dest: "/temp",
   limits: { files: 5 },
 }).array("images", 5);
 
