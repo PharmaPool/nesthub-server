@@ -9,9 +9,9 @@ const {
 
 const router = express.Router();
 
-router.get("/profile", getUser);
-router.put("/change-password", changePassword);
-router.put("/update-myfreescore", updateMyFreeScoreDetails);
+router.get("/profile/:id", getUser);
+router.put("/change-password/:id", changePassword);
+router.put("/update-myfreescore/:id", updateMyFreeScoreDetails);
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
 
