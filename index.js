@@ -4,7 +4,8 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const compression = require("compression");
-const listing_route = require("./routes/propertylisting");
+const auth_route = require("./routes/authRoutes");
+const user_route = require("./routes/userRoutes");
 
 dotenv.config();
 
@@ -35,7 +36,8 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res, next) => res.send("Hello world !!!"));
-app.use("/api/listing", listing_route);
+app.use("/api/auth", auth_route);
+app.use("/api/user", user_route);
 
 // connect to database
 mongoose
