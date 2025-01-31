@@ -1,9 +1,9 @@
-const User = require("../models/User");
+const User = require("../models/user");
 
 // Get User Profile
 const getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId).select("-password");
+    const user = await User.findById(req.params.id).select("-password");
     if (!user) return res.status(404).json({ message: "User not found" });
 
     res.json(user);
@@ -17,7 +17,7 @@ const changePassword = async (req, res) => {
   const { newPassword } = req.body;
 
   try {
-    const user = await User.findById(req.params.userId);
+    const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
     user.password = newPassword;
@@ -38,7 +38,7 @@ const updateMyFreeScoreDetails = async (req, res) => {
   }
 
   try {
-    const user = await User.findById(req.userId);
+    const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
     // Update the "myfreescoredetails" field
@@ -56,7 +56,7 @@ const updateMyFreeScoreDetails = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().select("-password"); // Exclude passwords
+    const users = await User.find() // Exclude passwords
     res.status(200).json({ success: true, users });
   } catch (error) {
     console.error("Error fetching users:", error);
