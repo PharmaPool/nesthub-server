@@ -56,7 +56,7 @@ const updateMyFreeScoreDetails = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find() // Exclude passwords
+    const users = await User.find(); // Exclude passwords
     res.status(200).json({ success: true, users });
   } catch (error) {
     console.error("Error fetching users:", error);
