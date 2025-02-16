@@ -2,11 +2,20 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const UserSchema = new mongoose.Schema({
-  fullname: { type: String, required: true },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  dateOfBirth: { type: Date, required: true },
+  ssn: { type: String, required: true, unique: true }, // Consider encrypting this for security
   phone: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  address: {
+    street: { type: String, required: true }, // Combined street name and number
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+  },
   myfreescoredetails: {
     email: { type: String, default: "" },
     password: { type: String, default: "" },
